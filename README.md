@@ -1,8 +1,52 @@
 # resemble: Regression and similarity evaluation for memory-based learning of spectral data
 
-Click [here to download the tar.gz file](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.tar.gz) 
-or [here to download the zip file](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.zip) 
-of the `resemble` package.
+For the moment, installing the `resemble` package directly from github is not possible (we are currently working on that). Therefore, try to download the [binary (.zip) file from here](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.zip) or the [source file (.tar.gz) from here](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.tar.gz). Remeber you should have R>3.0.0. Supose you downloaded the binary file to 'C:/MyFolder/', then you should be able to install the package as follows:
+
+```r
+install.packages('C:/MyFolder/resemble_1.0.zip')
+````
+
+After installing `resemble` you should be also able to run the following lines:
+
+```r
+require(resemble)
+
+help(mbl)
+
+#install.packages(prospectr)
+require(prospectr)
+
+data(NIRsoil)
+
+Xu <- NIRsoil$spc[!as.logical(NIRsoil$train),]
+Yu <- NIRsoil$CEC[!as.logical(NIRsoil$train)]
+Yr <- NIRsoil$CEC[as.logical(NIRsoil$train)]
+Xr <- NIRsoil$spc[as.logical(NIRsoil$train),]
+
+Xu <- Xu[!is.na(Yu),]
+Xr <- Xr[!is.na(Yr),]
+
+Yu <- Yu[!is.na(Yu)]
+Yr <- Yr[!is.na(Yr)]
+
+# Example of the mbl function
+# A mbl approach (the spectrum-based learner) as implemented in Ramirez-Lopez et al. (2013)
+# An exmaple where Yu is supposed to be unknown, but the Xu (spectral variables) are known
+ctrl1 <- mblController(sm = "pc", pcSelection = list("opc", 40),
+                       valMethod = "NNv",
+                       scaled = TRUE, center = TRUE)
+
+sbl.u <- mbl(Yr = Yr, Xr = Xr, Yu = NULL, Xu = Xu,
+             mblCtrl = ctrl1,
+             distUsage = "predictors",
+             k = seq(40, 150, by = 10),
+             method = "gpr")
+
+
+
+````
+
+
 
 [`resemble`](http://l-ramirez-lopez.github.io/resemble_v0.1/) implements a function dedicated to non-linear modelling of complex visible and infrared spectral data based on memory-based learning (MBL, _a.k.a_ instance-based learning or local modelling in the chemometrics literature). The package also includes functions for: computing and evaluate spectral similarity/dissimilarity matrices; projecting the spectra onto low dimensional orthogonal variables; removing irrelevant spectra from a reference set; etc. 
 

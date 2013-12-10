@@ -1,5 +1,7 @@
 # resemble: Regression and similarity evaluation for memory-based learning of spectral data
 
+Visit the [`resemble` site here](http://l-ramirez-lopez.github.io/resemble_v0.1/)
+
 For the moment, installing the `resemble` package directly from github is not possible (we are currently working on that). Therefore, try to download the [binary (.zip) file from here](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.zip) or the [source file (.tar.gz) from here](https://github.com/l-ramirez-lopez/resemble_v0.1/blob/master/Installers/resemble_1.0.tar.gz). Remeber you should have R>3.0.0. Supose you downloaded the binary file to 'C:/MyFolder/', then you should be able to install the package as follows:
 
 ```r
@@ -41,9 +43,6 @@ sbl.u <- mbl(Yr = Yr, Xr = Xr, Yu = NULL, Xu = Xu,
              distUsage = "predictors",
              k = seq(40, 150, by = 10),
              method = "gpr")
-
-
-
 ````
 
 

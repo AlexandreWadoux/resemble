@@ -251,11 +251,6 @@ mbl <- function(Yr, Xr, Yu = NULL, Xu,
                 method,
                 plsC){
   
-  if(!require("foreach")) require("foreach")
-  if(!require("iterators")) require("iterators")
-  if(!require("pls")) require("pls")
-  #if(!require("bigmemory")) require("bigmemory")
-  if(!require("kernlab")) require("kernlab")
   
   ini.cntrl <- mblCtrl
   
@@ -1073,8 +1068,6 @@ locFit<- function(x, y, predMethod, scaled = TRUE, weights = NULL, pred.new = TR
 #' @keywords internal
 gprCv <- function(x, y, scaled, weights = NULL, p = 0.75, resampling = 10, kpar, fit, retrieve = c("final.model", "none")){
   
-  if(length(find.package("kernlab",quiet=TRUE))==0) {install.packages("kernlab")}
-  if(!require(kernlab)){require(kernlab)}
   if(is.null(weights)) {weights <- 1}
   
   kernel <- "vanilladot"
@@ -1135,9 +1128,7 @@ cSds <-  function(x){
 #' @keywords internal
 plsCv <- function(x, y, ncomp, scaled, weights, p = 0.75, resampling = 10, retrieve = c("final.model", "all.models", "none")){
   
-  if(length(find.package("pls",quiet=TRUE))==0) {install.packages("pls")}
-  if(!require(pls)){require(pls)}
-  
+
   if(min(ncol(x), nrow(x)) < floor(ncomp * (1 + p))) {ncomp <- (floor(min(ncol(x), nrow(x)) * p))-1} 
   
   st.rmse.seg <- rmse.seg <- rsq.seg <- matrix(0, ncomp, resampling)
@@ -1263,7 +1254,7 @@ wapls.weights <- function(plsO, orgX, type = c("w1", "w2"), newX = NULL, plsC, w
       if(w2_warning)
         if(is.null(plsO$validation)) {warning("When wapls2 is used, cross-validation should be used in order to obtain better estimates of the RMSE and therefore more reliable weigths for the PLS components")}
       
-      inv.rmsecv <- 1/pls:::RMSEP(plsO)$val[1,,(1+(minF:maxF))]
+      inv.rmsecv <- 1/RMSEP(plsO)$val[1,,(1+(minF:maxF))]
       whgt <- inv.rmsecv/sum(inv.rmsecv)
     }
   }

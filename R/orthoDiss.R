@@ -152,9 +152,6 @@ orthoDiss <- function(Xr, X2 = NULL,
   
   if(local)
   {
-    if(!require("foreach")) require("foreach")
-    if(!require("iterators")) require("iterators")
-    
     
     if(is.null(X2)){
       

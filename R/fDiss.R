@@ -26,7 +26,7 @@
 #' where \eqn{p} is the number of variables of the observations.
 #' @return 
 #' a \code{matrix} of the computed dissimilarities. 
-#' @author Leonardo Ramirez-Lopez and Antine Stevens
+#' @author Leonardo Ramirez-Lopez and Antoine Stevens
 #' @examples
 #' require(prospectr)
 #' 
@@ -53,7 +53,7 @@ fDiss <- function(Xr, X2 = NULL, method = "euclid", center = TRUE, scaled = TRUE
   if(!is.null(X2))
     if(ncol(X2) != ncol(Xr))
       stop("The number of columns (variables) in Xr must be equal to the number of columns (variables) in X2")
-
+  
   mtd <- match.arg(method, c("euclid", "mahalanobis","cosine"))
   if(length(mtd) > 1)
     message(paste("More than one method was specified, only", mtd, "was used."))
@@ -85,7 +85,7 @@ fDiss <- function(Xr, X2 = NULL, method = "euclid", center = TRUE, scaled = TRUE
         stop("The covariance matrix (for the computation of the Mahalanobis distance) is exactly singular. Try another metod.")
       method <- "euclid"
     }
-      
+    
     if(!is.null(X2))
     {
       X2 <- X[(nrow(X) - nrow(X2) +1):nrow(X), , drop = FALSE]
@@ -115,6 +115,7 @@ fDiss <- function(Xr, X2 = NULL, method = "euclid", center = TRUE, scaled = TRUE
   return(rslt)
 }
 
+
 #' @title A function for transforming a matrix from its Euclidean spcae to its Mahalanobis space
 #' @keywords internal
 e2m <- function(X, sm.method = c("svd", "eigen")){
@@ -137,6 +138,7 @@ e2m <- function(X, sm.method = c("svd", "eigen")){
   dimnames(ms_x) <- nms
   return(ms_x)
 }
+
 
 #' @title Square root of (square) symetric matrices
 #' @keywords internal
@@ -164,13 +166,4 @@ sqrtSm <- function(X, method = c("svd", "eigen")){
     U <- out$vectors
     return(U %*% sqrt(D) %*% t(U))
   }
-  
-#   if(method == "Schur")
-#   {
-#     
-#     out <- Schur(X)
-#     D <- diag(out$EValues)
-#     U <- out$Q
-#     return(U %*% sqrt(D) %*% t(U))
-#   }
 }

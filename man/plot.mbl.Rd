@@ -59,6 +59,13 @@ ex1 <- mbl(Yr = Yr, Xr = Xr, Yu = NULL, Xu = Xu,
 plot(ex1)
 }
 }
+\author{
+  Leonardo Ramirez-Lopez and Antoine Stevens Ramirez-Lopez,
+  L., Behrens, T., Schmidt, K., Viscarra Rossel, R.,
+  Dematt?, J. A. M., Scholten, T. 2013b. Distance and
+  similarity-search metrics for use with soil vis-NIR
+  spectra. Geoderma 199, 43-53.
+}
 \seealso{
   \code{\link{mbl}}
 }

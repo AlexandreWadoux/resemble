@@ -91,6 +91,6 @@ md.xr.xu <- fDiss(Xr = Xr[,1:20], X2 = Xu[,1:20], method = "mahalanobis", center
 cdiss.xr.xu <- fDiss(Xr = Xr, X2 = Xu, method = "cosine", center = TRUE, scaled = TRUE)
 }
 \author{
-  Leonardo Ramirez-Lopez and Antine Stevens
+  Leonardo Ramirez-Lopez and Antoine Stevens
 }
 

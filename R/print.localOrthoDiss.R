@@ -26,6 +26,7 @@ print.localOrthoDiss <- function(x,...){
   }
 }
 
+
 "[.localOrthoDiss" <- function(x, rr, cl, drop = FALSE, ...){
   object <- x
   if(!is.logical(drop))
@@ -36,6 +37,7 @@ print.localOrthoDiss <- function(x,...){
     class(obj) <- "localOrthoDiss"
   return(obj)
 }  
+
 
 tryMod <- function (expr, addMss = NULL, silent = FALSE) 
 {
@@ -52,3 +54,4 @@ tryMod <- function (expr, addMss = NULL, silent = FALSE)
     invisible(structure(msg, class = "try-error", condition = e))
   })
 }
+

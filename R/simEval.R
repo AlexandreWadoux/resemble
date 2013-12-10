@@ -125,10 +125,10 @@ simEval <- function(d, sideInf, ...){
   else
     call. <- TRUE
   
-
+  
   rowOrd <- t(apply(d, 1, order))
   most <- rowOrd[ ,2]
-
+  
   if(is.numeric(as.matrix(sideInf))){
     sideInf <- as.matrix(sideInf)
     ny <- ncol(sideInf)

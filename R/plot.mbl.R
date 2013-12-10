@@ -46,7 +46,7 @@ plot.mbl <- function(x,
   
   object <- x
   pm <- par()$mfrow
-
+  
   if("validation" %in% g)
   {
     col <- NULL
@@ -113,7 +113,7 @@ plot.mbl <- function(x,
       
       xl <- paste(colnames(object$pcAnalysis$scores_Xr[,pcs[1],drop=F]), " (standardized)", sep = "") 
       yl <- paste(colnames(object$pcAnalysis$scores_Xr[,pcs[2],drop=F]), " (standardized)", sep = "") 
-       
+      
       plot(object$pcAnalysis$scores_Xr[,pcs], xlab = xl, ylab = yl, xlim = rng, ylim = rng, 
            col = rainbow(1, s = 1, v = 0, alpha = 0.3), pch = 16)
       mtext("pc Analyisis", col = "red")

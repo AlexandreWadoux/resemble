@@ -112,7 +112,7 @@ orthoProjection <- function(Xr, X2 = NULL,
     call. <- TRUE
   
   method <- match.arg(method, c("pls", "pca"))
-
+  
   if(method == "pls")
   {
     if(!is.numeric(as.matrix(Yr)))
@@ -224,7 +224,7 @@ pcProjection <- function(Xr, X2 = NULL, Yr = NULL, pcSelection = list("cumvar", 
   }else{
     X0 <- Xr
   }
- 
+  
   if(scaled)
   {
     sf <- cSds(X0)
@@ -232,7 +232,7 @@ pcProjection <- function(Xr, X2 = NULL, Yr = NULL, pcSelection = list("cumvar", 
   } else{
     sf <- rep(1, ncol(X0))
   }
-
+  
   svDecomp <- svd(x = X0)
   # Loadings and scores
   pcLoadings <- t(svDecomp$v)
@@ -273,7 +273,7 @@ pcProjection <- function(Xr, X2 = NULL, Yr = NULL, pcSelection = list("cumvar", 
     if(ny > 1)
     {
       if(sum(duplicated(colnames(Yr))) > 0)
-         stop("names of the Yr variables must be different")
+        stop("names of the Yr variables must be different")
       result <- matrix(NA, pcSelection$value, ny + 1)
       s.scores <- sweep(pcScores, MARGIN = 2, STATS = cSds(pcScores), FUN = "/")
       for(i in 1:pcSelection$value){
@@ -294,10 +294,10 @@ pcProjection <- function(Xr, X2 = NULL, Yr = NULL, pcSelection = list("cumvar", 
       result <- rep(NA, pcSelection$value)
       s.scores <- sweep(pcScores, MARGIN = 2, STATS = cSds(pcScores), FUN = "/")
       for(i in 1:pcSelection$value){           
-                          d <- as.matrix(dist(s.scores[1:nr, 1:i, drop = FALSE]))
-                          tmp <- simEval(d = d, sideInf = Yr, call. = FALSE)
-                          result[i] <- getElement(tmp$eval, ext)
-                        }
+        d <- as.matrix(dist(s.scores[1:nr, 1:i, drop = FALSE]))
+        tmp <- simEval(d = d, sideInf = Yr, call. = FALSE)
+        result[i] <- getElement(tmp$eval, ext)
+      }
       #result <- result[order(result[,1]),]
       results <- data.frame(1:pcSelection$value, result)
       colnames(results) <- c("pc", names(tmp$eval)[[1]])
@@ -309,7 +309,7 @@ pcProjection <- function(Xr, X2 = NULL, Yr = NULL, pcSelection = list("cumvar", 
   
   if(pcSel %in% c("cumvar","var"))
     sel <- (ev <= pcSelection$value)
-
+  
   if(pcSel == "manual") {
     sel <- (1:ncol(pcScores)) <= pcSelection$value
   }
@@ -407,11 +407,11 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
     }
     max.i <- min(dim(Xr)) - 1
   }
-
+  
   psel <- pcSelection
   Yr <- as.matrix(Yr)
   nas <- rowSums(is.na(Yr)) > 0
-
+  
   ny <- ncol(Yr)
   # center 
   if(center){ 
@@ -436,7 +436,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
     sf <- cSds(rbind(X0, X20))
     X0 <- sweep(x = X0, MARGIN = 2, FUN = "/", STATS = sf)
   } else{sf <- rep(1, ncol(X0))}
-
+  
   xvar <- sum(cSds(X0)^2)  
   
   inx.in <- 1:nrow(Y0)
@@ -468,7 +468,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
     pcSelection$value <- pcSelection$value - 1
   
   ev <- 0
-
+  
   if(ny != 1)
   {
     for(i in 1:max.i)
@@ -525,7 +525,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
         }
       } 
     }
-  nPf <- i
+    nPf <- i
   }else{
     for(i in 1:max.i)
     {
@@ -557,7 +557,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
       ev <- (sum(exv[1,1:i]) / sum(xvar))
       exv[2,i] <- ev 
       exv[3,i] <- exv[1,i]/sum(xvar)
-
+      
       if(pcSel %in% c("var", "cumvar"))
       {
         if(ifelse(pcSel == "cumvar", ev > pcSelection$value, exv[3,i] < pcSelection$value))
@@ -569,7 +569,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
         }
       }  
     }
-  nPf <- i
+    nPf <- i
   }
   
   # If the number of PLS factors is optimized by using the opc method then...
@@ -604,7 +604,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
       nPf <- which.min(results$rmsd.Y)
     }
   }
- 
+  
   # Select the necessary components
   exv <- exv[,1:nPf, drop=FALSE]
   weights <- weights[1:nPf, , drop=FALSE]
@@ -648,7 +648,7 @@ plsProjection <- function(Xr, X2 = NULL, Yr, pcSelection = list("opc", 40), cent
   rownames(scores) <- paste("Xr.", 1:nrow(scores), sep = "")
   colnames(scores) <- rownames(Y.loadings)
   
-
+  
   if(!is.null(X2)){
     if(is.vector(X2)){
       X2 <- t(X2)

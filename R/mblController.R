@@ -159,7 +159,7 @@ mblController <- function(sm = "pc",
   
   if(!is.logical(scaled))
     stop("'scaled' argument must be logical")
-    
+  
   if(sum(valMethod %in% c("NNv", "loc_crossval", "none")) == 0)
     stop("'valmethod' must be one at least one of 'NNv', 'loc_crossval', 'none'")
   

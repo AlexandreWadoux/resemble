@@ -19,14 +19,6 @@ Suggests:
   parallel,
   doParallel
 LinkingTo: Rcpp, RcppArmadillo
-BuildManual: yes
-Imports:
-    foreach,
-    iterators,
-    foreach,
-    iterators,
-    kernlab,
-    pls
 Collate:
     'corDiss.R'
     'fDiss.R'
@@ -38,8 +30,9 @@ Collate:
     'orthoProjection.R'
     'plot.mbl.R'
     'RcppExports.R'
-    'resemblepackage.r'
+    'resemblepackage.R'
     'sid.R'
     'simEval.R'
     'print.localOrthoDiss.R'
     'print.mbl.R'
+BuildManual: yes

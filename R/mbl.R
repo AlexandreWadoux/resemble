@@ -1269,5 +1269,3 @@ wapls.weights <- function(plsO, orgX, type = c("w1", "w2"), newX = NULL, plsC, w
   }
   return(whgt)
 }
-
-

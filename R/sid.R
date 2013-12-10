@@ -98,10 +98,10 @@ sid <- function(Xr, X2 = NULL,
   
   if(!is.logical(scaled))
     stop("'scaled' argument must be logical")
-    
+  
   if(!is.numeric(reg))
     stop("'reg' argument must be numeric")
-
+  
   if(length(reg) > 1)
     stop("'reg' must be a single numeric value")
   
@@ -109,7 +109,7 @@ sid <- function(Xr, X2 = NULL,
   rm(Xr)
   if(is.null(X2)){
     if(mode == "density"){
-
+      
       match.arg(kernel, c("gaussian", "rectangular", "triangular", "biweight", "epanechnikov", "cosine", "optcosine"))
       
       if(center){
@@ -244,7 +244,7 @@ sid <- function(Xr, X2 = NULL,
       rownames(klKl) <- paste("Xr", 1:nrow(X), sep = ".")
       rownames(X) <- rownames(klKl)
       rownames(X2) <- colnames(klKl) 
-
+      
       return(list(sid = klKl, Xr = Xo[1:nrow(X), ], X2 = Xo[(nrow(Xo) - nrow(X2) + 1):nrow(Xo), ], 
                   densityDisXr = X, densityDisX2 = X2, 
                   xdval = str))               

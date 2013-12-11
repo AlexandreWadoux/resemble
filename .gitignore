@@ -7,3 +7,4 @@ src/*.dll
 ^.*\.Rproj$
 src-i386/
 src-x64/
+resemble_v0\.1\.Rproj

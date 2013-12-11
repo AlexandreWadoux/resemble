@@ -92,14 +92,16 @@ pca.d <- orthoDiss(Xr = Xr, pcSelection = list("cummvar", 0.999),
                    local = FALSE,
                    center = TRUE, scaled = TRUE)
 
-# The final number of pcs used for computing the distance matrix of objects in Xr
+# The final number of pcs used for computing the distance
+# matrix of objects in Xr
 pca.d$nPcs
 
 # The final distance matrix
 ds <- pca.d$dissimilarity
 
 # Example 1.1
-# Evaluate the distance matrix on the baisis of the side information (Yr) associated with Xr
+# Evaluate the distance matrix on the baisis of the
+# side information (Yr) associated with Xr
 se <- simEval(d = ds, sideInf = cbind(Yr, Yr2))
 
 # The final evaluation results
@@ -110,7 +112,8 @@ se$eval
 se$firstNN
 
 # Example 1.2
-# Evaluate the distance matrix on the baisis of two side information (Yr and Yr2) variables associated with Xr
+# Evaluate the distance matrix on the baisis of two side information (Yr and Yr2)
+# variables associated with Xr
 Yr2 <- NIRsoil$CEC[as.logical(NIRsoil$train)]
 se2 <- simEval(d = ds, sideInf = cbind(Yr, Yr2))
 
@@ -127,7 +130,8 @@ se2$firstNN
 # (this is the same principle used in the optimized principal components approach ('opc))
 
 # first project the data
-pca <- orthoProjection(Xr = Xr, method = "pca", pcSelection = list("manual", 30), center = TRUE, scaled = TRUE)
+pca <- orthoProjection(Xr = Xr, method = "pca", pcSelection = list("manual", 30),
+                       center = TRUE, scaled = TRUE)
 
 # standardize the scores
 scores.s <- sweep(pca$scores, MARGIN = 2, STATS = pca$sc.sdv, FUN = "/")

@@ -22,7 +22,10 @@
 #' Xr <- Xr[!is.na(Yr),]
 #' Yr <- Yr[!is.na(Yr)] 
 #'
-#' ctrl <- mblController(sm = "pls", ws = 51, pcSelection = list("opc", 40), valMethod = c("NNv"), scaled = TRUE, center = TRUE)
+#' ctrl <- mblController(sm = "pls", ws = 51, 
+#'                       pcSelection = list("opc", 40), 
+#'                       valMethod = c("NNv"), 
+#'                       scaled = TRUE, center = TRUE)
 #'
 #' ex1 <- mbl(Yr = Yr, Xr = Xr, Yu = NULL, Xu = Xu,
 #'            mblCtrl = ctrl,

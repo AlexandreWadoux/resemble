@@ -13,5 +13,8 @@ RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
 BuildType: Package
-PackageInstallArgs: --no-multiarch --with-keep.source
+PackageInstallArgs: --with-keep.source
+PackageBuildArgs: --md5
+PackageBuildBinaryArgs: --latex
+PackageCheckArgs: --as-cran --check-subdirs=yes
 PackageRoxygenize: rd,collate

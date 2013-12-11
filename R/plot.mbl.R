@@ -26,7 +26,10 @@
 #' Xr <- Xr[!is.na(Yr),]
 #' Yr <- Yr[!is.na(Yr)] 
 #'
-#' ctrl <- mblController(sm = "cor", ws = 51, pcSelection = list("cummvar", 0.999), valMethod = c("NNv"), scaled = TRUE, center = TRUE)
+#' ctrl <- mblController(sm = "cor", ws = 51, 
+#'                       pcSelection = list("cummvar", 0.999), 
+#'                       valMethod = c("NNv"), 
+#'                       scaled = TRUE, center = TRUE)
 #'
 #' ex1 <- mbl(Yr = Yr, Xr = Xr, Yu = NULL, Xu = Xu,
 #'            mblCtrl = ctrl,

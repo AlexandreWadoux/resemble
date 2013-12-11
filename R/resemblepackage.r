@@ -38,7 +38,7 @@
 #'@docType package
 #'@name resemble
 #'@title resemble package
-#'@import Rcpp RcppArmadillo foreach iterators 
+#'@import Rcpp RcppArmadillo foreach iterators pls kernlab
 #'@useDynLib resemble
 #'@author Leonardo Ramirez-Lopez & Antoine Stevens
 #'
